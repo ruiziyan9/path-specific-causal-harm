@@ -273,7 +273,7 @@ def predict_torch_logistic_proba(model, X, device=DEVICE):
     with torch.no_grad():
         return torch.sigmoid(model(to_tensor(X, device)).squeeze(-1)).cpu().numpy()
 
-# ── NEW: multi-output helpers ──────────────────────────────────────────────────
+# ── Multi-output helpers ──────────────────────────────────────────────────
 
 def fit_torch_linear_multi(X, Y_mat, lr=1e-2, epochs=40,
                            weight_decay=1e-4, device=DEVICE):
@@ -339,7 +339,7 @@ def _prepend_a(a_val_or_vec, X):
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Propensity model (unchanged — single-output is fine here)
+# Propensity model 
 # ──────────────────────────────────────────────────────────────────────────────
 
 @dataclass
@@ -356,7 +356,7 @@ class PropensityModel:
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Mediator models (unchanged — per-unit density/sample, single output)
+# Mediator models 
 # ──────────────────────────────────────────────────────────────────────────────
 
 @dataclass
@@ -453,7 +453,7 @@ class BernoulliMModel:
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# *** OPTIMISED *** MuModels — single multi-output model per arm
+# MuModels — single multi-output model per arm
 # ──────────────────────────────────────────────────────────────────────────────
 
 @dataclass
@@ -549,7 +549,7 @@ class MuRegressionModel:
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Factories (unchanged interface)
+# Factories 
 # ──────────────────────────────────────────────────────────────────────────────
 
 def fit_propensity(X, A, epochs=10):
@@ -564,7 +564,7 @@ def fit_mu(X, A, M, Y, Tn, epochs=10, t_learner=False):
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Nuisance estimation (unchanged interface)
+# Nuisance estimation
 # ──────────────────────────────────────────────────────────────────────────────
 from crps_mu_models import fit_mu_crps
 def estimate_nuisances(X_tr, A_tr, M_tr, Y_tr, Tn, epochs=10, weight_decay=1e-4,
@@ -580,7 +580,7 @@ def estimate_nuisances(X_tr, A_tr, M_tr, Y_tr, Tn, epochs=10, weight_decay=1e-4,
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# *** OPTIMISED *** pseudo_outcomes_from_nuisances
+# Pseudo_outcomes_from_nuisances
 # ──────────────────────────────────────────────────────────────────────────────
 
 def pseudo_outcomes_from_nuisances(X_te, A_te, M_te, Y_te, Tn, nuis,
@@ -644,7 +644,7 @@ def pseudo_outcomes_from_nuisances(X_te, A_te, M_te, Y_te, Tn, nuis,
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# *** OPTIMISED *** crossfit_pseudo_outcomes — parallel folds
+# Crossfit_pseudo_outcomes — parallel folds
 # ──────────────────────────────────────────────────────────────────────────────
 
 def _fit_one_fold(X, A, M, Y, Tn, train_idx, test_idx,
@@ -727,7 +727,7 @@ def crossfit_pseudo_outcomes(X, A, M, Y, Tn, K=2, n_mc=200,
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# *** OPTIMISED *** fit_conditional_cdfs / predict_conditional_cdfs
+# Fit_conditional_cdfs / predict_conditional_cdfs
 # ──────────────────────────────────────────────────────────────────────────────
 
 def enforce_cdf_monotonicity(cdf, eps=1e-6):
@@ -850,7 +850,7 @@ def predict_conditional_cdfs(models, X, Tn, eps=1e-4, enforce_mono=True):
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# *** OPTIMISED *** fit_plugin_cdfs / predict_plugin_cdfs
+# Fit_plugin_cdfs / predict_plugin_cdfs
 # ──────────────────────────────────────────────────────────────────────────────
 
 def fit_plugin_cdfs(X, A, M, Y, Tn, n_mc=200, epochs=10, weight_decay=1e-4,
@@ -910,7 +910,7 @@ def predict_plugin_cdfs(models, X, Tn, n_mc=None, rng=None):
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Policy training helpers (unchanged)
+# Policy training helpers 
 # ──────────────────────────────────────────────────────────────────────────────
 
 def makarov_bounds_per_x(delta):
@@ -931,7 +931,7 @@ def compute_bounds(cdfs, Tn):
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Oracle pseudo-outcomes (unchanged)
+# Oracle pseudo-outcomes 
 # ──────────────────────────────────────────────────────────────────────────────
 
 def oracle_pseudo_outcomes(Y, A, Tn, pi0, pi1, g0, g1,
@@ -950,7 +950,7 @@ def rmse_phi(phi_hat, phi_oracle):
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Evaluation / plotting helpers (unchanged)
+# Evaluation / plotting helpers
 # ──────────────────────────────────────────────────────────────────────────────
 
 def empirical_cdf(y, Tn):          # redefined above; keep for compat
@@ -1217,7 +1217,7 @@ def estimated_objects(cdf_hat, X, Tn,  is_dr=False, phi = [], x1_col=0):
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Plotting (unchanged)
+# Plotting 
 # ──────────────────────────────────────────────────────────────────────────────
 
 _PAIR_LABELS = {(0,0): r"$F_{00}$", (1,0): r"$F_{10}$", (1,1): r"$F_{11}$"}
