@@ -49,8 +49,7 @@ import matplotlib.pyplot as plt
 
 # ---------------------------------------------------------------------------
 # Resolve where the project modules (functions.py, crps_mu_models.py) live, and
-# put that directory on sys.path BEFORE importing them. We do a tiny manual scan
-# of argv for --code-dir so this works regardless of the current directory.
+# put that directory on sys.path BEFORE importing them. 
 # ---------------------------------------------------------------------------
 def _resolve_code_dir(argv):
     code_dir = None
@@ -100,7 +99,7 @@ except ModuleNotFoundError as exc:
 
 
 # ===========================================================================
-# 1. Data-generating process  (notebook cell 7 -- the *tuned* DGP is kept)
+# 1. Data-generating process  
 # ===========================================================================
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
@@ -787,7 +786,7 @@ def oracle_F_closed_vec(t_grid, X, a=0, ap=0):
 
 
 # ===========================================================================
-# 2. Estimators / aggregation  (notebook cells 9 & 10)
+# 2. Estimators / aggregation 
 # ===========================================================================
 EFFECTS = ["Direct", "Indirect", "Total"]
 ESTIMATORS = ["dr", "plugin"]
@@ -1159,7 +1158,7 @@ def print_aggregated(agg):
 
 
 # ===========================================================================
-# 3. Oracle NDE / NIE / ATE / FNA diagnostics  (notebook cells 15 & 17)
+# 3. Oracle NDE / NIE / ATE / FNA diagnostics  
 #    -- self-contained, CPU-only, run once with --diagnostics. Helper names are
 #       underscore-prefixed so they never clash with `from functions import *`.
 # ===========================================================================
@@ -1235,7 +1234,7 @@ def print_oracle_diagnostics(dgp):
 
 
 # ===========================================================================
-# 4. Main: resumable simulation loop  (notebook cells 21-24, 26)
+# 4. Main: resumable simulation loop  
 # ===========================================================================
 def parse_args(argv=None):
     p = argparse.ArgumentParser(
@@ -1367,7 +1366,7 @@ def main(argv=None):
         if (sim_idx + 1) % args.print_every == 0 or (sim_idx + 1) == args.n_sims:
             print_aggregated(summarize_simulations(sim_results, base_seed=args.base_seed))
 
-    # --- Final aggregate + save (notebook cell 26) ---
+    # --- Final aggregate + save ---
     final_stats = summarize_simulations(sim_results, base_seed=args.base_seed)
     with open(os.path.join(output_dir, "final_statistics.pkl"), "wb") as f:
         pickle.dump(final_stats, f)
