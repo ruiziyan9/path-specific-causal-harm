@@ -1,0 +1,27 @@
+# Restricted data — never commit
+data/*
+!data/README.md
+*.dta
+*.sav
+*.csv
+
+# Outputs
+results/*
+!results/.gitkeep
+logs/
+*.pkl
+*.out
+*.err
+*.png
+*.pdf
+
+# Python / editors / notebooks
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+.DS_Store
+.idea/
+.vscode/
