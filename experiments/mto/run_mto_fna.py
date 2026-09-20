@@ -10,9 +10,6 @@ conservative confidence sets.
 
 No exploratory analysis and no plug-in estimator are included.
 
-This is a packaged version of the FNA-bounds path in the experiment notebook
-(sample construction + DR triplet + tighter_bounds_from_ccdf_triplet_dr). It
-imports the shared `functions` / `crps_mu_models` modules from the project.
 
 Example
 -------
@@ -64,7 +61,7 @@ def parse_args():
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# MTO sample construction (faithful to the notebook's bounds cell)
+# MTO sample construction 
 # ──────────────────────────────────────────────────────────────────────────────
 def build_mto_sample(data_path):
     """Return X, A, M, Y, X_cols for the experimental-vs-control arms.
