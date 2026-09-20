@@ -1,9 +1,8 @@
 # Path-specific FNA bounds
 
 Code for the paper on estimating bounds for the path-specific **fraction negatively
-affected (FNA)** — the direct, indirect, and total pathway — under partial
-identification. The bounds are covariate-assisted Makarov bounds, estimated
-with a two-stage orthogonal (doubly robust) estimator with cross-fitting,
+affected (FNA)**. The bounds are covariate-assisted Makarov bounds, estimated
+with a two-stage orthogonal estimator with cross-fitting,
 and compared against a plug-in (g-formula) baseline.
 
 ## Repository layout
@@ -33,9 +32,6 @@ pip install -r requirements.txt
 
 A CUDA GPU is used automatically when available; everything also runs on CPU, more slowly.
 
-## Reproducing the experiments
-
-All commands are run from the repository root.
 
 ### Simulation study
 
@@ -62,11 +58,6 @@ python experiments/simulation/fna_simulation.py \
 
 To run all five designs as a SLURM array, use `sbatch slurm/run_simulation.slurm`.
 
-For a quick smoke test:
-
-```bash
-python experiments/simulation/fna_simulation.py --n-sims 2 --output-dir results/smoke
-```
 
 ### MTO application
 
@@ -93,13 +84,3 @@ Alternatively, run `sbatch slurm/run_mto.slurm`. Results are written to
 | MC draws for mediator integral | 5 (binary M: exact, unused) | 10000 |
 | Replications / seeds | 300 (seeds 2026–2325) | 1 (seed 0) |
 
-## Citation
-
-```bibtex
-@inproceedings{TODO,
-  title  = {TODO},
-  author = {TODO},
-  booktitle = {TODO},
-  year   = {TODO}
-}
-```
