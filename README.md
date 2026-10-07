@@ -16,6 +16,8 @@ src/
 experiments/
   simulation/fna_simulation.py   simulation study (all DGPs)
   mto/run_mto_fna.py             Moving to Opportunity application
+  refined_direct/                mediator-conditioned direct-FNA bounds (Appendix G);
+                                 uses its own functions.py, shares src/crps_mu_models.py
 slurm/
   run_simulation.slurm      array job: one task per DGP, paper settings
   run_mto.slurm             MTO job, paper settings
