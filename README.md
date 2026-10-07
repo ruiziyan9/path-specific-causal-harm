@@ -21,6 +21,7 @@ experiments/
 slurm/
   run_simulation.slurm      array job: one task per DGP, paper settings
   run_mto.slurm             MTO job, paper settings
+  run_refined_direct.slurm  
 data/                       place mto.dta here (not distributed, see data/README.md)
 results/                    outputs (git-ignored)
 ```
